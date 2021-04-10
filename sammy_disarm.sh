@@ -665,7 +665,7 @@ modvendor
 #convertsystem
 }
 
-read -p ": Which device are you building for [S10,S20,S21] " device
+read -p ": Which device are you building for [N10,S10,S20,S21] " device
 case "$device" in
     S20) 
         printf -- 'Modding for '$device' device \n'
