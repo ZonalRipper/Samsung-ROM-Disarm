@@ -507,4 +507,5 @@ case "$device" in
 esac
 
 printf -- '\e[5mModding Complete! \e[0m\n'
-read ": Press Enter to exit script"
+printf -- 'Script will close in 20seconds \n'
+sleep 20
