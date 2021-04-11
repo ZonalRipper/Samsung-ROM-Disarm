@@ -40,7 +40,7 @@ setProperty()
 
 read -p "Enter ROM version: " romversion
 
-# AMEND SYSTEM DEBLOAT HERE
+# AMEND S20/S21 SYSTEM DEBLOAT HERE
 debloatSystem() {
 local md5
 local i
@@ -103,7 +103,8 @@ rm -f $SYSMOUNT/system/etc/sysconfig/samsungauthframework.xml
 rm -f $SYSMOUNT/system/recovery-from-boot.p
 rm -f $SYSMOUNT/system/tts/lang_SMT/smt_es_MX*.*
 }
-# AMEND SYSTEM DEBLOAT HERE
+
+# AMEND S10/N10 SYSTEM DEBLOAT HERE
 s10debloatSystem() {
 local md5
 local i
@@ -159,7 +160,7 @@ rm -f $SYSMOUNT/system/recovery-from-boot.p
 rm -f $SYSMOUNT/system/tts/lang_SMT/smt_es_MX*.*
 }
 
-# AMEND OTHER DEBLOAT HERE
+# AMEND S20/S21 PRODUCT/PRISM DEBLOAT HERE
 debloatPPV() {
 local md5
 local i
@@ -183,7 +184,7 @@ rm -R -f prism/sipdb/Xt9/*
 find $PWD/prism/sipdb/SwiftKey -mindepth 1 -maxdepth 1 -type d -not -name "ar" -not -name "de" -not -name "en_us" -not -name "en_gb" -not -name "es_es" -not -name "fr_fr" -not -name "ro" -not -name "ru" -exec rm -rf '{}' \;
 }
 
-# AMEND OTHER DEBLOAT HERE
+# AMEND S10/N10 PRODUCT DEBLOAT HERE
 s10debloatPPV() {
 local md5
 local i
@@ -198,7 +199,7 @@ rm -R -f product/sipdb/Xt9/*
 find $PWD/product/sipdb/SwiftKey -mindepth 1 -maxdepth 1 -type d -not -name "ar" -not -name "de" -not -name "en_us" -not -name "en_gb" -not -name "es_es" -not -name "fr_fr" -not -name "ro" -not -name "ru" -exec rm -rf '{}' \;
 }
 
-# AMEND SYSTEM BUILD PROP TWEAKS HERE
+# AMEND SYSTEM BUILD PROP TWEAKS HERE FOR ALL VERSIONS
 BUILDPROP="
 fw.max_users=3
 fw.power_user_switcher=1
@@ -227,8 +228,8 @@ persist.cust.tel.eons=1
 persist.adb.notify=0
 persist.service.adb.enable=1"
 #
-## SYSTEM S20/S21 ##
 #
+# SYSTEM MODS
 modsystem()
 {
 ##SYSTEM DEBLOAT##
@@ -285,58 +286,7 @@ else
 fi
 }
 
-## SYSTEM S10 ##
-# s10modsystem()
-# {
-
-# SYSMOUNT="$PWD/system"
-
-# printf -- 'debloating system \n';
-# if [ -d "$SYSMOUNT/system" ]; then
-#     s10debloatSystem
-#     printf -- '\033[32m     ..System debloated \033[0m\n';
-# else
-#     printf -- '\033[31m     ..System mount not found \033[0m\n';
-# fi
-
-# LIBFILE="system/lib64/libbluetooth.so"
-# printf -- 'Patching '$LIBFILE' \n';
-# if [ -f "$SYSMOUNT/$LIBFILE" ]; then
-#     printf -- '\033[32m     ..patching libbluetooth file \033[0m\n';
-#     perl -0777 -i -pe 's/\x88\x00\x00\x34\xf3\x03\x1f\x2a\xf4\x03\x1f\x2a\x3e\x00\x00\x14/\x1f\x20\x03\xd5\xf3\x03\x1f\x2a\xf4\x03\x1f\x2a\x3e\x00\x00\x14/' $SYSMOUNT/$LIBFILE
-#     printf -- '\033[32m     ..file succesfully patched \033[0m\n';
-# else
-#     printf -- '\033[31m     ..'$LIBFILE' not found \033[0m[0m\n';
-# fi
-
-# KEYSTORE="system/bin/keystore"
-# printf -- 'Patching '$KEYSTORE' \n';
-# if [ -f "$SYSMOUNT/$KEYSTORE" ]; then
-#     printf -- '\033[32m     ..patching keystore file \033[0m\n';
-#     perl -0777 -i -pe 's/\x4e\x00\x74\x69\x6d\x65\x73\x74\x61\x6d\x70\x00\x61\x6e\x64\x72/\x4e\x00\x00\x69\x6d\x65\x73\x74\x61\x6d\x70\x00\x61\x6e\x64\x72/' $SYSMOUNT/$KEYSTORE
-#     printf -- '\033[32m     ..file succesfully patched \033[0m\n';
-# else
-#     printf -- '\033[31m     ..'$KEYSTORE' not found \033[0m[0m\n';
-# fi
-
-# SYSBUILDPROP="system/build.prop"
-# printf -- 'modding '$SYSBUILDPROP' \n';
-# if [ -f "$SYSMOUNT/$SYSBUILDPROP" ]; then
-#     setProperty "ro.build.display.id" "$romversion" "$SYSMOUNT/$SYSBUILDPROP" $SYSMOUNT/$SYSBUILDPROP
-#     printf -- '\033[32m     ..ROM version set to '$romversion' \033\n';
-#     setProperty "ro.config.tima" "0" "$SYSMOUNT/$SYSBUILDPROP"
-#     printf -- '\033[32m     ..tima disabled \033\n';
-#     setProperty "ro.config.iccc_version" "iccc_disabled" "$SYSMOUNT/$SYSBUILDPROP"
-#     printf -- '\033[32m     ..iccc disabled \033\n';
-#     setProperty "ro.config.dmverity" "false" "$SYSMOUNT/$SYSBUILDPROP"
-#     printf -- '\033[32m     ..dmverity disabled \033\n';
-#     echo "$BUILDPROP" >> $SYSMOUNT/$SYSBUILDPROP
-#     printf -- '\033[32m     ..tweaks added \033[0m\n';
-# else
-#     printf -- '\033[31m     ..'$SYSBUILDPROP' not found \033[0m\n';
-# fi
-# }
-
+#PRISM/PRODUCT MODS
 modprismproduct()
 {
 printf -- 'debloating prism & product \n';
@@ -378,41 +328,7 @@ else
 fi
 }
 
-## PRISM/PRODUCT S10 ##
-# s10modproduct()
-# {
-# printf -- 'debloating product \n';
-# if [ -d "$PWD/product" ]; then
-#     s10debloatPPV
-#     printf -- '\033[32m     ..Product debloated \033[0m\n';
-# else
-#     printf -- '\033[31m     ..Missing Directory \033[0m\n';
-# fi
-
-# printf -- 'modding SCS service \n';
-# PRODUCTINIT=product/etc/init/init.rc
-# if [ -f "$PWD/$PRODUCTINIT" ]; then
-#     sed -i 's/start\sscs/stop\ scs/g' $PWD/$PRODUCTINIT
-#     printf -- '\033[32m     ..SCS stopped \033[0m\n';
-# else
-#     printf -- '\033[31m     ..'$PRODUCTINIT' not found \033[0m\n';
-# fi
-
-# OMC="/product/omc"
-# DECODE="/disarm_tools/omc-decoder.jar"
-# printf -- 'decoding CSC files \n'
-# if [ -d "$PWD/product/omc" ]; then
-#     if [ -f "$PWD/$DECODE" ]; then
-#         java -jar $PWD/$DECODE -i $PWD/$OMC -o $PWD/$OMC
-#         printf -- '\033[32m     ..CSC files decoded \033[0m\n';
-#     else
-#         printf -- '\033[31m     ..decode tool not found in '$DECODE' \033[0m\n';
-#     fi
-# else
-#     printf -- '\033[31m     ..no omc folder found \033[0m\n';
-# fi
-# }
-
+#VENDOR MODS
 modvendor()
 {
 VENDORBUILDPROP=/vendor/build.prop
@@ -443,35 +359,6 @@ elif [ $FSTAB = "fstab.exynos2100" ]; then
 else
     printf -- '\033[31m     ..No '$device' FSTAB found \033[0m\n';
 fi
-
-
-# if [ -f "$PWD/$S20FSTAB" ]; then
-#     sed -i -e 's/fileencryption=ice/encryptable=ice/g' $PWD/$S20FSTAB
-#     sed -i -e 's/avb,//g' $PWD/$S20FSTAB
-#     sed -i -e 's/avb=vbmeta,//g' $PWD/$S20FSTAB
-#     sed -i -e 's/,avb_keys=\/avb\/q-gsi.avbpubkey:\/avb\/r-gsi\.avbpubkey:\/avb\/s-gsi.avbpubkey//g' $PWD/$S20FSTAB
-#     printf -- '\033[32m     ..S20 encryption disabled \033[0m\n';
-# else
-#     printf -- '\033[31m     ..S20 FSTAB not found \033[0m\n';
-# fi
-# if [ -f "$PWD/$S21FSTAB" ]; then
-#     sed -i -e 's/fileencryption=aes-256-xts:aes-256-cts:v2/encryptable=ice/g' $PWD/$S21FSTAB
-#     sed -i -e 's/avb,//g' $PWD/$S21FSTAB
-#     sed -i -e 's/avb=vbmeta,//g' $PWD/$S21FSTAB
-#     sed -i -e 's/,avb_keys=\/avb\/q-gsi.avbpubkey:\/avb\/r-gsi\.avbpubkey:\/avb\/s-gsi.avbpubkey//g' $PWD/$S21FSTAB
-#     printf -- '\033[32m     ..S21 encryption disabled \033[0m\n';
-# else
-#     printf -- '\033[31m     ..S21 FSTAB not found \033[0m\n';
-# fi
-# if [ -f "$PWD/$S10FSTAB" ]; then
-#     sed -i -e 's/fileencryption=ice/encryptable=ice/g' $PWD/$S10FSTAB
-#     sed -i -e 's/avb,//g' $PWD/$S10FSTAB
-#     sed -i -e 's/avb=vbmeta,//g' $PWD/$S10FSTAB
-#     sed -i -e 's/,avb_keys=\/avb\/q-gsi.avbpubkey:\/avb\/r-gsi\.avbpubkey:\/avb\/s-gsi.avbpubkey//g' $PWD/$S10FSTAB
-#     printf -- '\033[32m     ..S10 encryption disabled \033[0m\n';
-# else
-#     printf -- '\033[31m     ..S10 FSTAB not found \033[0m\n';
-# fi
 
 CASS=/vendor/etc/init/cass.rc
 printf -- 'modding '$CASS' \n'
@@ -518,70 +405,6 @@ else
 fi
 }
 
-# s10modvendor()
-# {
-# VENDORBUILDPROP=/vendor/build.prop
-# printf -- 'modding '$VENDORBUILDPROP' \n';
-# if [ -f "$PWD/$VENDORBUILDPROP" ]; then
-#     setProperty "ro.frp.pst" "" "$PWD/$VENDORBUILDPROP"
-#     printf -- '\033[32m     ..frp disabled \033[0m\n';
-# else
-#     printf -- '\033[31m     ..'$VENDORBUILDPROP' not found \033[0m\n';
-# fi
-# S10FSTAB="/vendor/etc/fstab.exynos9820"
-# printf -- 'modding S10 FSTAB \n'
-# if [ -f "$PWD/$S10FSTAB" ]; then
-#     sed -i -e 's/fileencryption=ice/encryptable=ice/g' $PWD/$S10FSTAB
-#     sed -i -e 's/avb,//g' $PWD/$S10FSTAB
-#     sed -i -e 's/avb=vbmeta,//g' $PWD/$S10FSTAB
-#     sed -i -e 's/,avb_keys=\/avb\/q-gsi.avbpubkey:\/avb\/r-gsi\.avbpubkey:\/avb\/s-gsi.avbpubkey//g' $PWD/$S10FSTAB
-#     printf -- '\033[32m     ..S10 encryption disabled \033[0m\n';
-# else
-#     printf -- '\033[31m     ..S10 FSTAB not found \033[0m\n';
-# fi
-
-# CASS=/vendor/etc/init/cass.rc
-# printf -- 'modding '$CASS' \n'
-# if [ -f "$PWD/$CASS" ]; then
-#     sed -i 's/start\scass/stop\ cass/g' $PWD/$CASS
-#     printf -- '\033[32m     ..CASS disabled \033[0m\n';
-# else
-#     printf -- '\033[31m     ..'$CASS' not found \033[0m\n';
-# fi
-
-# PROCA=/vendor/etc/init/pa_daemon_teegris.rc
-# printf -- 'modding '$PROCA' \n'
-# if [ -f "$PWD/$PROCA" ]; then
-#     sed -i 's/start\sproca/stop\ proca/g' $PWD/$PROCA
-#     printf -- '\033[32m     ..proca disabled \033[0m\n';
-# else
-#     printf -- '\033[31m     ..'$PROCA' not found \033[0m\n';
-# fi
-
-# VAULT=/vendor/etc/init/vaultkeeper_common.rc
-# printf -- 'modding '$VAULT' \n'
-# if [ -f "$PWD/$VAULT" ]; then
-#     sed -i 's/start\svaultkeeper/stop\ vaultkeeper/g' $PWD/$VAULT
-#     rm -f vendor/etc/vintf/manifest/vaultkeeper_manifest.xml
-#     rm -f vendor/bin/vaultkeeperd
-#     printf -- '\033[32m     ..vaultkeeper disabled \033[0m\n';
-# else
-#     printf -- '\033[31m     ..'$VAULT' not found \033[0m\n';
-# fi
-
-# MANIFEST=/vendor/etc/vintf/manifest.xml
-# printf -- 'modding '$MANIFEST' \n'
-# if [ -f "$PWD/$MANIFEST" ]; then
-#     sed -i -e '/<hal format="hidl">/{N;/<name>vendor\.samsung\.hardware\.security\.proca<\/name>/{:loop;N;/<\/hal>/!bloop;d}}' $PWD/$MANIFEST
-#     sed -i -e '/<hal format="hidl">/{N;/<name>vendor\.samsung\.hardware\.security\.wsm<\/name>/{:loop;N;/<\/hal>/!bloop;d}}' $PWD/$MANIFEST
-#     sed -i -e '/<hal format="hidl">/{N;/<name>vendor\.samsung\.hardware\.security\.securestorage<\/name>/{:loop;N;/<\/hal>/!bloop;d}}' $PWD/$MANIFEST
-#     rm -f vendor/etc/vintf/manifest/vaultkeeper_manifest.xml
-#     printf -- '\033[32m     ..proca, securestorage & wsm disabled \033[0m\n';
-# else
-#     printf -- '\033[31m     ..'$MANIFEST' not found \033[0m\n';
-# fi
-# }
-
 modoptics()
 {
 OMC="/optics/configs/carriers/"
@@ -599,6 +422,7 @@ else
 fi
 }
 
+#SDAT SYSTEM CONVERT - DISABLED
 convertsystem()
 {
 read -p "Do you want me to create system.sparse.img [y,n] " sparse
@@ -679,7 +503,8 @@ case "$device" in
     N10)
         printf -- 'Modding for '$device' device \n'
         N10 ;;
-    *) echo "incorrect device entered" ;;
+    *) echo "The device $device is not currently supported" ;;
 esac
 
 printf -- '\e[5mModding Complete! \e[0m\n'
+read ": Press Enter to exit script"
