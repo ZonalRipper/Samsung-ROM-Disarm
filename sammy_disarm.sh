@@ -201,6 +201,7 @@ find $PWD/product/sipdb/SwiftKey -mindepth 1 -maxdepth 1 -type d -not -name "ar"
 
 # AMEND SYSTEM BUILD PROP TWEAKS HERE FOR ALL VERSIONS
 BUILDPROP="
+##CUSTOM TWEAKS##
 fw.max_users=3
 fw.power_user_switcher=1
 fw.show_hidden_users=1
@@ -324,7 +325,7 @@ if [ $device = "S10" ] || [ $device = "N10" ] ; then
         printf -- '\033[31m     ..No decode tool or omc folder found \033[0m\n';
     fi
 else
-    printf -- '\033[31m     ..Skipped as not required for '$device' \033[0m\n';
+    printf -- '\033[31m     ..Skipped as only on S10 & N10 devices \033[0m\n';
 fi
 }
 
