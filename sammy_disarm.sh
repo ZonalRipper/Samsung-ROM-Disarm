@@ -352,7 +352,7 @@ if [ $FSTAB = "fstab.exynos9820" ] || [ $FSTAB = "fstab.exynos9825" ] || [ $FSTA
     sed -i -e 's/,avb_keys=\/avb\/q-gsi.avbpubkey:\/avb\/r-gsi\.avbpubkey:\/avb\/s-gsi.avbpubkey//g' $FSTABDIR/$FSTAB
     printf -- '\033[32m     ..'$device' encryption disabled \033[0m\n';
 elif [ $FSTAB = "fstab.exynos2100" ]; then
-    sed -i -e 's/fileencryption=ice/encryptable=ice/g' $FSTABDIR/$FSTAB
+    sed -i -e 's/fileencryption=aes-256-xts:aes-256-cts:v2/encryptable=ice/g'  $FSTABDIR/$FSTAB
     sed -i -e 's/avb,//g' $FSTABDIR/$FSTAB
     sed -i -e 's/avb=vbmeta,//g' $FSTABDIR/$FSTAB
     sed -i -e 's/,avb_keys=\/avb\/q-gsi.avbpubkey:\/avb\/r-gsi\.avbpubkey:\/avb\/s-gsi.avbpubkey//g' $FSTABDIR/$FSTAB
