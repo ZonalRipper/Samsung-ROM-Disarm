@@ -8,7 +8,7 @@
 # VERSION CONTROL                                             #
 # v1.0 - initial version                                      #
 # v1.1 - added removal of avb string from fstab file          #
-# v1.2 - enabled sparse feat.					                    #
+# v1.2 - enabled sparse feat.					              #
 # v1.3 - enabled brotli compression				              #
 # v1.5 - added more debloat	 				                  #
 # v1.6 - added support for S21 fstab                          #
@@ -24,6 +24,7 @@
 # v3.6 - change lib and keystore patching method              #
 # v4.0 - Rework to mod system folder  #GitUpload              #
 # v4.1 - Add support for N10 device and cleanup of code       #
+# v4.2 - comment out knoxcore from debloat                    #
 ###############################################################
 
 ###############################################################
@@ -75,7 +76,7 @@ rm -R -f $SYSMOUNT/system/priv-app/FBServices
 rm -R -f $SYSMOUNT/system/priv-app/FotaAgent
 rm -R -f $SYSMOUNT/system/priv-app/KLMSAgent
 rm -R -f $SYSMOUNT/system/priv-app/knoxanalyticsagent
-rm -R -f $SYSMOUNT/system/priv-app/KnoxCore
+#rm -R -f $SYSMOUNT/system/priv-app/KnoxCore
 rm -R -f $SYSMOUNT/system/priv-app/knoxvpnproxyhandler
 rm -R -f $SYSMOUNT/system/priv-app/LiveStickers
 rm -R -f $SYSMOUNT/system/priv-app/MateAgent
@@ -136,7 +137,7 @@ rm -R -f $SYSMOUNT/system/priv-app/FBServices
 rm -R -f $SYSMOUNT/system/priv-app/FotaAgent
 rm -R -f $SYSMOUNT/system/priv-app/KLMSAgent
 rm -R -f $SYSMOUNT/system/priv-app/knoxanalyticsagent
-rm -R -f $SYSMOUNT/system/priv-app/KnoxCore
+#rm -R -f $SYSMOUNT/system/priv-app/KnoxCore
 rm -R -f $SYSMOUNT/system/priv-app/knoxvpnproxyhandler
 #rm -R -f $SYSMOUNT/system/priv-app/MateAgent
 rm -R -f $SYSMOUNT/system/priv-app/OneDrive_Samsung_v3
