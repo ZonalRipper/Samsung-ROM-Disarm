@@ -25,6 +25,8 @@
 # v4.0 - Rework to mod system folder  #GitUpload              #
 # v4.1 - Add support for N10 device and cleanup of code       #
 # v4.2 - comment out knoxcore from debloat                    #
+# v4.3 - fixed secure folder for S20						  #
+# v4.4 - added more debloat options							  #
 ###############################################################
 
 ###############################################################
@@ -47,17 +49,19 @@ local md5
 local i
 
 rm -R -f $SYSMOUNT/system/app/AutomationTest_FB
-rm -R -f $SYSMOUNT/system/app/BBCAgent
+# rm -R -f $SYSMOUNT/system/app/BBCAgent
 rm -R -f $SYSMOUNT/system/app/ESEServiceAgent
+rm -R -f $SYSMOUNT/system/app/EasterEgg
 rm -R -f $SYSMOUNT/system/app/Facebook_stub
 rm -R -f $SYSMOUNT/system/app/FactoryCameraFB
 rm -R -f $SYSMOUNT/system/app/FBAppManager_NS
 rm -R -f $SYSMOUNT/system/app/KidsHome_Installer
-rm -R -f $SYSMOUNT/system/app/KnoxAttestationAgent
-rm -R -f $SYSMOUNT/system/app/LinkSharing_v11
+# rm -R -f $SYSMOUNT/system/app/KnoxAttestationAgent
+# rm -R -f $SYSMOUNT/system/app/LinkSharing_v11
+rm -R -f $SYSMOUNT/system/app/LiveDrawing
 rm -R -f $SYSMOUNT/system/app/LiveTranscribe
 rm -R -f $SYSMOUNT/system/app/MDMApp
-rm -R -f $SYSMOUNT/system/app/mldapchecker
+# rm -R -f $SYSMOUNT/system/app/mldapchecker
 rm -R -f $SYSMOUNT/system/app/Notes40
 rm -R -f $SYSMOUNT/system/app/SamsungPassAutofill_v1
 rm -R -f $SYSMOUNT/system/app/SamsungTTS
@@ -65,20 +69,20 @@ rm -R -f $SYSMOUNT/system/app/SecurityLogAgent
 rm -R -f $SYSMOUNT/system/app/UniversalMDMClient
 rm -R -f $SYSMOUNT/system/app/HoneyBoard/oat
 rm -R -f $SYSMOUNT/system/priv-app/AuthFramework
-rm -R -f $SYSMOUNT/system/priv-app/AREmojiEditor
-rm -R -f $SYSMOUNT/system/priv-app/AREmoji
-rm -R -f $SYSMOUNT/system/priv-app/AvatarEmojiSticker_Palette
+# rm -R -f $SYSMOUNT/system/priv-app/AREmojiEditor
+# rm -R -f $SYSMOUNT/system/priv-app/AREmoji
+# rm -R -f $SYSMOUNT/system/priv-app/AvatarEmojiSticker_Palette
+# rm -R -f $SYSMOUNT/system/priv-app/LiveStickers
 rm -R -f $SYSMOUNT/system/priv-app/CIDManager
-rm -R -f $SYSMOUNT/system/priv-app/ContainerAgent3
+# rm -f $SYSMOUNT/system/priv-app/ContainerAgent3/ContainerAgent3.apk
 rm -R -f $SYSMOUNT/system/priv-app/EnhancedAttestationAgent
 rm -R -f $SYSMOUNT/system/priv-app/FBInstaller_NS
 rm -R -f $SYSMOUNT/system/priv-app/FBServices
 rm -R -f $SYSMOUNT/system/priv-app/FotaAgent
 rm -R -f $SYSMOUNT/system/priv-app/KLMSAgent
 rm -R -f $SYSMOUNT/system/priv-app/knoxanalyticsagent
-#rm -R -f $SYSMOUNT/system/priv-app/KnoxCore
-rm -R -f $SYSMOUNT/system/priv-app/knoxvpnproxyhandler
-rm -R -f $SYSMOUNT/system/priv-app/LiveStickers
+# rm -R -f $SYSMOUNT/system/priv-app/KnoxCore
+# rm -R -f $SYSMOUNT/system/priv-app/knoxvpnproxyhandler
 rm -R -f $SYSMOUNT/system/priv-app/MateAgent
 rm -R -f $SYSMOUNT/system/priv-app/OneDrive_Samsung_v3
 rm -R -f $SYSMOUNT/system/priv-app/PaymentFramework
@@ -86,7 +90,7 @@ rm -R -f $SYSMOUNT/system/priv-app/SamsungBilling
 rm -R -f $SYSMOUNT/system/priv-app/SamsungPass
 rm -R -f $SYSMOUNT/system/priv-app/SamsungSocial
 rm -R -f $SYSMOUNT/system/priv-app/SOAgent
-rm -R -f $SYSMOUNT/system/priv-app/StickerFaceARAvatar
+# rm -R -f $SYSMOUNT/system/priv-app/StickerFaceARAvatar
 rm -R -f $SYSMOUNT/system/priv-app/Upday
 rm -R -f $SYSMOUNT/system/priv-app/Fast/oat
 rm -R -f $SYSMOUNT/system/priv-app/NSDSWebApp/oat
@@ -97,12 +101,15 @@ rm -R -f $SYSMOUNT/system/priv-app/Telecom/oat
 rm -R -f $SYSMOUNT/system/priv-app/TeleService/oat
 rm -R -f $SYSMOUNT/system/priv-app/YourPhone_P1_5
 rm -R -f $SYSMOUNT/system/preload/SmartSwitch
-rm -R -f $SYSMOUNT/system/container/SharedDeviceKeyguard
+# rm -R -f $SYSMOUNT/system/container/SharedDeviceKeyguard
 rm -R -f $SYSMOUNT/system/hidden/SmartTutor
 rm -f $SYSMOUNT/system/etc/sysconfig/samsungpassapp.xml
 rm -f $SYSMOUNT/system/etc/sysconfig/samsungauthframework.xml
 rm -f $SYSMOUNT/system/recovery-from-boot.p
 rm -f $SYSMOUNT/system/tts/lang_SMT/smt_es_MX*.*
+rm -f $SYSMOUNT/system/framework/oat/arm64/services.art
+rm -f $SYSMOUNT/system/framework/oat/arm64/services.odex
+rm -f $SYSMOUNT/system/framework/oat/arm64/services.vdex
 }
 
 # AMEND S10/N10 SYSTEM DEBLOAT HERE
@@ -111,15 +118,17 @@ local md5
 local i
 
 rm -R -f $SYSMOUNT/system/app/AutomationTest_FB
-rm -R -f $SYSMOUNT/system/app/BBCAgent
+# rm -R -f $SYSMOUNT/system/app/BBCAgent
+rm -R -f $SYSMOUNT/system/app/EasterEgg
 rm -R -f $SYSMOUNT/system/app/ESEServiceAgent
 rm -R -f $SYSMOUNT/system/app/Facebook_stub
 rm -R -f $SYSMOUNT/system/app/FactoryCameraFB
 rm -R -f $SYSMOUNT/system/app/FBAppManager_NS
 rm -R -f $SYSMOUNT/system/app/KidsHome_Installer
-rm -R -f $SYSMOUNT/system/app/KnoxAttestationAgent
-#rm -R -f $SYSMOUNT/system/app/LinkSharing_v11
-#rm -R -f $SYSMOUNT/system/app/LiveTranscribe
+# rm -R -f $SYSMOUNT/system/app/KnoxAttestationAgent
+# rm -R -f $SYSMOUNT/system/app/LinkSharing_v11
+rm -R -f $SYSMOUNT/system/app/LiveDrawing
+rm -R -f $SYSMOUNT/system/app/LiveTranscribe
 rm -R -f $SYSMOUNT/system/app/Maps
 rm -R -f $SYSMOUNT/system/app/MDMApp
 #rm -R -f $SYSMOUNT/system/app/mldapchecker
@@ -130,16 +139,16 @@ rm -R -f $SYSMOUNT/system/app/UniversalMDMClient
 rm -R -f $SYSMOUNT/system/app/HoneyBoard/oat
 rm -R -f $SYSMOUNT/system/priv-app/AuthFramework
 rm -R -f $SYSMOUNT/system/priv-app/CIDManager
-rm -R -f $SYSMOUNT/system/priv-app/ContainerAgent3
+# rm -f $SYSMOUNT/system/priv-app/ContainerAgent3/ContainerAgent3.apk
 rm -R -f $SYSMOUNT/system/priv-app/EnhancedAttestationAgent
 rm -R -f $SYSMOUNT/system/priv-app/FBInstaller_NS
 rm -R -f $SYSMOUNT/system/priv-app/FBServices
 rm -R -f $SYSMOUNT/system/priv-app/FotaAgent
 rm -R -f $SYSMOUNT/system/priv-app/KLMSAgent
 rm -R -f $SYSMOUNT/system/priv-app/knoxanalyticsagent
-#rm -R -f $SYSMOUNT/system/priv-app/KnoxCore
-rm -R -f $SYSMOUNT/system/priv-app/knoxvpnproxyhandler
-#rm -R -f $SYSMOUNT/system/priv-app/MateAgent
+# rm -R -f $SYSMOUNT/system/priv-app/KnoxCore
+# rm -R -f $SYSMOUNT/system/priv-app/knoxvpnproxyhandler
+rm -R -f $SYSMOUNT/system/priv-app/MateAgent
 rm -R -f $SYSMOUNT/system/priv-app/OneDrive_Samsung_v3
 rm -R -f $SYSMOUNT/system/priv-app/PaymentFramework
 rm -R -f $SYSMOUNT/system/priv-app/SamsungBilling
@@ -154,11 +163,14 @@ rm -R -f $SYSMOUNT/system/priv-app/SecSettings/oat
 rm -R -f $SYSMOUNT/system/priv-app/SecureFolder/oat
 rm -R -f $SYSMOUNT/system/priv-app/Telecom/oat
 rm -R -f $SYSMOUNT/system/priv-app/TeleService/oat
-rm -R -f $SYSMOUNT/system/container/SharedDeviceKeyguard
+# rm -R -f $SYSMOUNT/system/container/SharedDeviceKeyguard
 rm -f $SYSMOUNT/system/etc/sysconfig/samsungpassapp.xml
 rm -f $SYSMOUNT/system/etc/sysconfig/samsungauthframework.xml
 rm -f $SYSMOUNT/system/recovery-from-boot.p
 rm -f $SYSMOUNT/system/tts/lang_SMT/smt_es_MX*.*
+rm -f $SYSMOUNT/system/framework/oat/arm64/services.art
+rm -f $SYSMOUNT/system/framework/oat/arm64/services.odex
+rm -f $SYSMOUNT/system/framework/oat/arm64/services.vdex
 }
 
 # AMEND S20/S21 PRODUCT/PRISM DEBLOAT HERE
@@ -171,6 +183,7 @@ rm -R -f product/app/YouTube
 #rm -R -f product/priv-app/Velvet
 rm -R -f prism/app/*companion-release
 rm -R -f prism/app/*eBay*
+rm -R -f prism/app/yandex*
 rm -R -f prism/app/idapk*
 rm -R -f prism/app/instagram_stub
 rm -R -f prism/app/MDIP*
