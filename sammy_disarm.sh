@@ -298,7 +298,7 @@ SYSBUILDPROP="system/build.prop"
 printf -- 'modding '$SYSBUILDPROP' \n';
 if [ -f "$SYSMOUNT/$SYSBUILDPROP" ]; then
     setProperty "ro.build.display.id" "$romversion" "$SYSMOUNT/$SYSBUILDPROP" $SYSMOUNT/$SYSBUILDPROP
-    printf -- '\033[32m     ..ROM version set to '$romversion' \033[0m\n';
+    printf -- '\033[32m     ..ROM version set \033[0m\n';
     setProperty "ro.config.tima" "0" "$SYSMOUNT/$SYSBUILDPROP"
     printf -- '\033[32m     ..tima disabled \033[0m\n';
     setProperty "ro.config.iccc_version" "iccc_disabled" "$SYSMOUNT/$SYSBUILDPROP"
