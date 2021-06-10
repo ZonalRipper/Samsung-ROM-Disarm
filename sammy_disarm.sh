@@ -27,6 +27,7 @@
 # v4.2 - comment out knoxcore from debloat                    #
 # v4.3 - fixed secure folder for S20						  #
 # v4.4 - added more debloat options							  #
+# v4.5 - Added FRP and Reactivation Disable for vendor        #
 ###############################################################
 
 ###############################################################
