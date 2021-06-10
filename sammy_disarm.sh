@@ -367,7 +367,7 @@ else
     printf -- '\033[31m     ..'$VENDORBUILDPROP' not found \033[0m\n';
 fi
 
-UEVENTD=/vendor/uventd.rc
+UEVENTD=/vendor/ueventd.rc
 printf -- 'modding '$UEVENTD' \n';
 if [ $device = "S20" ] || [ $device = "S21" ]; then
     sed -i -e 's/\/dev\/block\/by-name\/persist/#\/dev\/block\/by-name\/persist/g' $PWD/$UEVENTD
