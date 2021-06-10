@@ -48,6 +48,7 @@ debloatSystem() {
 local md5
 local i
 
+# rm -R -f $SYSMOUNT/system/app/AirReadingGlass
 rm -R -f $SYSMOUNT/system/app/AutomationTest_FB
 # rm -R -f $SYSMOUNT/system/app/BBCAgent
 rm -R -f $SYSMOUNT/system/app/ESEServiceAgent
@@ -61,36 +62,42 @@ rm -R -f $SYSMOUNT/system/app/KidsHome_Installer
 rm -R -f $SYSMOUNT/system/app/LiveDrawing
 rm -R -f $SYSMOUNT/system/app/LiveTranscribe
 rm -R -f $SYSMOUNT/system/app/MDMApp
-# rm -R -f $SYSMOUNT/system/app/mldapchecker
+rm -R -f $SYSMOUNT/system/app/mldapchecker
+rm -R -f $SYSMOUNT/system/app/Netflix_activationCommon
+rm -R -f $SYSMOUNT/system/app/Netflix_stub
 rm -R -f $SYSMOUNT/system/app/Notes40
 rm -R -f $SYSMOUNT/system/app/SamsungPassAutofill_v1
 rm -R -f $SYSMOUNT/system/app/SamsungTTS
 rm -R -f $SYSMOUNT/system/app/SecurityLogAgent
+rm -R -f $SYSMOUNT/system/app/SmartReminder
 rm -R -f $SYSMOUNT/system/app/UniversalMDMClient
 rm -R -f $SYSMOUNT/system/app/HoneyBoard/oat
+# rm -R -f $SYSMOUNT/system/priv-app/AirCommand
 rm -R -f $SYSMOUNT/system/priv-app/AuthFramework
 # rm -R -f $SYSMOUNT/system/priv-app/AREmojiEditor
 # rm -R -f $SYSMOUNT/system/priv-app/AREmoji
 # rm -R -f $SYSMOUNT/system/priv-app/AvatarEmojiSticker_Palette
-# rm -R -f $SYSMOUNT/system/priv-app/LiveStickers
 rm -R -f $SYSMOUNT/system/priv-app/CIDManager
-# rm -f $SYSMOUNT/system/priv-app/ContainerAgent3/ContainerAgent3.apk
-rm -R -f $SYSMOUNT/system/priv-app/EnhancedAttestationAgent
+rm -f $SYSMOUNT/system/priv-app/ContainerAgent3/ContainerAgent3.apk
+# rm -R -f $SYSMOUNT/system/priv-app/EnhancedAttestationAgent
 rm -R -f $SYSMOUNT/system/priv-app/FBInstaller_NS
 rm -R -f $SYSMOUNT/system/priv-app/FBServices
 rm -R -f $SYSMOUNT/system/priv-app/FotaAgent
-rm -R -f $SYSMOUNT/system/priv-app/KLMSAgent
-rm -R -f $SYSMOUNT/system/priv-app/knoxanalyticsagent
+# rm -R -f $SYSMOUNT/system/priv-app/KLMSAgent
+# rm -R -f $SYSMOUNT/system/priv-app/knoxanalyticsagent
 # rm -R -f $SYSMOUNT/system/priv-app/KnoxCore
 # rm -R -f $SYSMOUNT/system/priv-app/knoxvpnproxyhandler
+rm -R -f $SYSMOUNT/system/priv-app/LiveStickers
 rm -R -f $SYSMOUNT/system/priv-app/MateAgent
 rm -R -f $SYSMOUNT/system/priv-app/OneDrive_Samsung_v3
 rm -R -f $SYSMOUNT/system/priv-app/PaymentFramework
+rm -R -f $SYSMOUNT/system/priv-app/Quickboard
 rm -R -f $SYSMOUNT/system/priv-app/SamsungBilling
 rm -R -f $SYSMOUNT/system/priv-app/SamsungPass
 rm -R -f $SYSMOUNT/system/priv-app/SamsungSocial
 rm -R -f $SYSMOUNT/system/priv-app/SOAgent
 # rm -R -f $SYSMOUNT/system/priv-app/StickerFaceARAvatar
+rm -R -f $SYSMOUNT/system/priv-app/Tips
 rm -R -f $SYSMOUNT/system/priv-app/Upday
 rm -R -f $SYSMOUNT/system/priv-app/Fast/oat
 rm -R -f $SYSMOUNT/system/priv-app/NSDSWebApp/oat
@@ -100,6 +107,8 @@ rm -R -f $SYSMOUNT/system/priv-app/SecureFolder/oat
 rm -R -f $SYSMOUNT/system/priv-app/Telecom/oat
 rm -R -f $SYSMOUNT/system/priv-app/TeleService/oat
 rm -R -f $SYSMOUNT/system/priv-app/YourPhone_P1_5
+rm -R -f $SYSMOUNT/system/preload/AirCommand
+rm -R -f $SYSMOUNT/system/preload/Facebook_stub_preload
 rm -R -f $SYSMOUNT/system/preload/SmartSwitch
 # rm -R -f $SYSMOUNT/system/container/SharedDeviceKeyguard
 rm -R -f $SYSMOUNT/system/hidden/SmartTutor
@@ -107,6 +116,9 @@ rm -f $SYSMOUNT/system/etc/sysconfig/samsungpassapp.xml
 rm -f $SYSMOUNT/system/etc/sysconfig/samsungauthframework.xml
 rm -f $SYSMOUNT/system/recovery-from-boot.p
 rm -f $SYSMOUNT/system/tts/lang_SMT/smt_es_MX*.*
+rm -f $SYSMOUNT/system/tts/lang_SMT/smt_en_GB*.*
+rm -f $SYSMOUNT/system/tts/lang_SMT/smt_pt_BR*.*
+rm -f $SYSMOUNT/system/tts/lang_SMT/smt_ru_RU*.*
 rm -f $SYSMOUNT/system/framework/oat/arm64/services.art
 rm -f $SYSMOUNT/system/framework/oat/arm64/services.odex
 rm -f $SYSMOUNT/system/framework/oat/arm64/services.vdex
@@ -131,7 +143,7 @@ rm -R -f $SYSMOUNT/system/app/LiveDrawing
 rm -R -f $SYSMOUNT/system/app/LiveTranscribe
 rm -R -f $SYSMOUNT/system/app/Maps
 rm -R -f $SYSMOUNT/system/app/MDMApp
-#rm -R -f $SYSMOUNT/system/app/mldapchecker
+rm -R -f $SYSMOUNT/system/app/mldapchecker
 rm -R -f $SYSMOUNT/system/app/SamsungPassAutofill_v1
 rm -R -f $SYSMOUNT/system/app/SamsungTTS
 rm -R -f $SYSMOUNT/system/app/SecurityLogAgent
@@ -139,7 +151,7 @@ rm -R -f $SYSMOUNT/system/app/UniversalMDMClient
 rm -R -f $SYSMOUNT/system/app/HoneyBoard/oat
 rm -R -f $SYSMOUNT/system/priv-app/AuthFramework
 rm -R -f $SYSMOUNT/system/priv-app/CIDManager
-# rm -f $SYSMOUNT/system/priv-app/ContainerAgent3/ContainerAgent3.apk
+rm -f $SYSMOUNT/system/priv-app/ContainerAgent3/ContainerAgent3.apk
 rm -R -f $SYSMOUNT/system/priv-app/EnhancedAttestationAgent
 rm -R -f $SYSMOUNT/system/priv-app/FBInstaller_NS
 rm -R -f $SYSMOUNT/system/priv-app/FBServices
@@ -228,7 +240,6 @@ ro.securestorage.support=false
 ro.telephony.call_ring.delay=0
 wlan.wfd.hdcp=disable
 ro.security.vaultkeeper.native=0
-ro.frp.pst=
 ro.config.hw_quickpoweron=true
 profiler.force_disable_err_rpt=1
 profiler.force_disable_ulog=1
@@ -355,6 +366,22 @@ else
     printf -- '\033[31m     ..'$VENDORBUILDPROP' not found \033[0m\n';
 fi
 
+UEVENTD=/vendor/uventd.rc
+printf -- 'modding '$UEVENTD' \n';
+if [ $device = "S20" ] || [ $device = "S21" ]; then
+    sed -i -e 's/\/dev\/block\/by-name\/persist/#\/dev\/block\/by-name\/persist/g' $PWD/$UEVENTD
+    sed -i -e 's/\/dev\/block\/platform\/13100000.ufs\/by-name\/persistent/#\/dev\/block\/platform\/13100000.ufs\/by-name\/persistent/g' $PWD/$UEVENTD
+    sed -i -e 's/\/dev\/block\/platform\/13100000.ufs\/by-name\/steady/#\/dev\/block\/platform\/13100000.ufs\/by-name\/steady/g' $PWD/$UEVENTD
+    sed -i -e 's/\/dev\/block\/platform\/13100000.ufs\/by-name\/param/#\/dev\/block\/platform\/13100000.ufs\/by-name\/param/g' $PWD/$UEVENTD
+    printf -- '\033[32m     ..FRP and Reactivation disabled for '$device' \033[0m\n';
+elif [ $device = "S10" ] || [ $device = "N10" ]; then
+    sed -i -e 's/\/dev\/block\/by-name\/persist/#\/dev\/block\/by-name\/persist/g' $PWD/$UEVENTD
+    sed -i -e 's/\/dev\/block\/platform\/13d60000.ufs\/by-name\/persistent/#\/dev\/block\/platform\/13d60000.ufs\/by-name\/persistent/g' $PWD/$UEVENTD
+    sed -i -e 's/\/dev\/block\/platform\/13d60000.ufs\/by-name\/steady/#\/dev\/block\/platform\/13d60000.ufs\/by-name\/steady/g' $PWD/$UEVENTD
+    printf -- '\033[32m     ..FRP and Reactivation disabled for '$device' \033[0m\n';
+else
+    printf -- '\033[31m     ..'$UEVENTD' not found \033[0m\n';
+fi
 
 FSTAB="$(find $PWD/vendor/etc/ -maxdepth 1 -name "fstab.exynos*" -exec basename {} \;)"
 FSTABDIR="$PWD/vendor/etc/"
