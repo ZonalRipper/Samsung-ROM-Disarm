@@ -28,6 +28,7 @@
 # v4.3 - fixed secure folder for S20						  #
 # v4.4 - added more debloat options							  #
 # v4.5 - Added FRP and Reactivation Disable for vendor        #
+# v4.6 - Added floating features for S10,N10 & S20            #
 ###############################################################
 
 ###############################################################
@@ -313,9 +314,12 @@ else
 fi
 }
 
-#PRISM/PRODUCT MODS
+####################
+#PRISM/PRODUCT MODS#
+####################
 modprismproduct()
 {
+#DEBLOAT PRISM
 printf -- 'debloating prism & product \n';
 if [ $device = "S20" ] || [ $device = "S21" ]; then
     debloatPPV
@@ -327,6 +331,7 @@ else
     printf -- '\033[31m     ..No Prism/Product found for '$device' \033[0m\n';
 fi
 
+#DISABLE SCS SERVICE
 printf -- 'disable SCS service \n';
 PRISMINIT=prism/etc/init/init.rc
 PRODUCTINIT=product/etc/init/init.rc
@@ -340,6 +345,7 @@ else
     printf -- '\033[31m     ..Failed to disable SCS service \033[0m\n';
 fi
 
+#DECODE CSC FILES S10 N10
 OMC="/product/omc"
 DECODE="/disarm_tools/omc-decoder.jar"
 printf -- 'decoding CSC files in product \n'
@@ -358,6 +364,7 @@ fi
 #VENDOR MODS
 modvendor()
 {
+#DISABLE FRP
 VENDORBUILDPROP=/vendor/build.prop
 printf -- 'modding '$VENDORBUILDPROP' \n';
 if [ -f "$PWD/$VENDORBUILDPROP" ]; then
@@ -367,6 +374,7 @@ else
     printf -- '\033[31m     ..'$VENDORBUILDPROP' not found \033[0m\n';
 fi
 
+#DISABLE FRP AND GOOGLE REACTIVATION
 UEVENTD=/vendor/ueventd.rc
 printf -- 'modding '$UEVENTD' \n';
 if [ $device = "S20" ] || [ $device = "S21" ]; then
@@ -384,6 +392,7 @@ else
     printf -- '\033[31m     ..'$UEVENTD' not found \033[0m\n';
 fi
 
+#MOD FSTAB ENCRYPTION OPTIONS
 FSTAB="$(find $PWD/vendor/etc/ -maxdepth 1 -name "fstab.exynos*" -exec basename {} \;)"
 FSTABDIR="$PWD/vendor/etc/"
 printf -- 'modding '$FSTAB' \n'
@@ -403,6 +412,7 @@ else
     printf -- '\033[31m     ..No '$device' FSTAB found \033[0m\n';
 fi
 
+#DISABLE CASS
 CASS=/vendor/etc/init/cass.rc
 printf -- 'modding '$CASS' \n'
 if [ -f "$PWD/$CASS" ]; then
@@ -412,6 +422,7 @@ else
     printf -- '\033[31m     ..'$CASS' not found \033[0m\n';
 fi
 
+#DISABLE PROCA
 PROCA=/vendor/etc/init/pa_daemon_teegris.rc
 printf -- 'modding '$PROCA' \n'
 if [ -f "$PWD/$PROCA" ]; then
@@ -421,6 +432,7 @@ else
     printf -- '\033[31m     ..'$PROCA' not found \033[0m\n';
 fi
 
+#DISABLE VAULTKEEPER
 VAULT=/vendor/etc/init/vaultkeeper_common.rc
 printf -- 'modding '$VAULT' \n'
 if [ -f "$PWD/$VAULT" ]; then
@@ -432,6 +444,7 @@ else
     printf -- '\033[31m     ..'$VAULT' not found \033[0m\n';
 fi
 
+#DISABLE WSM, SECURESTORAGE & PROCA
 MANIFEST=/vendor/etc/vintf/manifest.xml
 printf -- 'modding '$MANIFEST' \n'
 if [ $device = "S21" ] || [ $device = "S20" ]; then
@@ -446,10 +459,23 @@ elif [ $device = "S10" ] || [ $device = "N10" ]; then
 else    
     printf -- '\033[31m     ..'$MANIFEST' not found \033[0m\n';
 fi
+
+#ADD FLOATING FEATURE
+FLOAT=/vendor/etc/floating_features.xml
+printf -- 'modding '$FLOAT' \n'
+if [ $device = "S10" ] || [ $device = "N10" ] || [ $device = "S20" ]; then
+    sed -i -e '/<\/SecFloatingFeatureSet>/i    <SEC_FLOATING_FEATURE_LAUNCHER_CONFIG_ZERO_PAGE_PACKAGE_NAMES>com.google.android.googlequicksearchbox,com.samsung.android.app.spage<\/SEC_FLOATING_FEATURE_LAUNCHER_CONFIG_ZERO_PAGE_PACKAGE_NAMES>' $PWD/$FLOAT
+    printf -- '\033[32m     ..floating features added \033[0m\n';
+elif [ $device = "S21" ]; then
+    printf -- '\033[31m     ..Mod not needed on S21 \033[0m\n';
+else    
+    printf -- '\033[31m     ..floating features not added \033[0m\n';
+fi
 }
 
 modoptics()
 {
+#DECODE CSC S20 S21
 OMC="/optics/configs/carriers/"
 DECODE="/disarm_tools/omc-decoder.jar"
 printf -- 'decoding CSC files in Optics \n'
@@ -465,49 +491,11 @@ else
 fi
 }
 
-#SDAT SYSTEM CONVERT - DISABLED
-convertsystem()
-{
-read -p "Do you want me to create system.sparse.img [y,n] " sparse
-case "$sparse" in
-    y) 
-        printf -- 'converting system.img to system.sparse.img \n'
-        img2simg system.img system.sparse.img 
-        printf -- '\033[32m     ..system.sparse.img created \033[0m\n' ;;
-    n) printf -- '\033[31m     ..system.sparse.img not created \033[0m\n' ;;
-    *) echo "incorrect value entered" ;;
-esac
-
-# SDAT AND BROTLI
-IMG2SDAT="/disarm_tools/img2sdat/img2sdat.py"
-printf -- 'converting system.sparse.img to sdat \n'
-if [ -f "$PWD/system.sparse.img" ]; then
-    if [ -f "$PWD/$IMG2SDAT" ]; then
-        python $PWD/$IMG2SDAT system.sparse.img -v 4 >/dev/null
-        printf -- '\033[32m     ..sparse IMG converted to sdat \033[0m\n';
-        rm -f $PWD/system.sparse.img
-    else
-        printf -- '\033[31m     ..img2sdat tool not found \033[0m\n';
-    fi
-    if [ -f "$PWD/system.new.dat" ]; then
-        printf -- 'compressing sdat with brotli \n'
-        brotli -6 system.new.dat
-        printf -- '\033[32m     ..sdat succesfully compressed \033[0m\n';
-        rm -f $PWD/system.new.dat
-    else
-        printf -- '\033[31m     ..system.new.dat not found \033[0m\n';
-    fi
-else
-    printf -- '\033[31m     ..system.sparse.img not found so aborting \033[0m\n';
-fi
-}
-
 S20() {
 modsystem
 modprismproduct
 modvendor
 modoptics
-#convertsystem
 }
 
 S21() {
@@ -515,21 +503,18 @@ modsystem
 modprismproduct
 modvendor
 modoptics
-#convertsystem
 }
 
 S10() {
 modsystem
 modprismproduct
 smodvendor
-#convertsystem
 }
 
 N10() {
 modsystem
 modprismproduct
 modvendor
-#convertsystem
 }
 
 read -p ": Which device are you building for [N10,S10,S20,S21] " device
