@@ -461,7 +461,7 @@ else
 fi
 
 #ADD FLOATING FEATURE
-FLOAT=/vendor/etc/floating_features.xml
+FLOAT=/vendor/etc/floating_feature.xml
 printf -- 'modding '$FLOAT' \n'
 if [ $device = "S10" ] || [ $device = "N10" ] || [ $device = "S20" ]; then
     sed -i -e '/<\/SecFloatingFeatureSet>/i    <SEC_FLOATING_FEATURE_LAUNCHER_CONFIG_ZERO_PAGE_PACKAGE_NAMES>com.google.android.googlequicksearchbox,com.samsung.android.app.spage<\/SEC_FLOATING_FEATURE_LAUNCHER_CONFIG_ZERO_PAGE_PACKAGE_NAMES>' $PWD/$FLOAT
