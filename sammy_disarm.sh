@@ -149,23 +149,24 @@ rm -R -f $SYSMOUNT/system/app/MDMApp
 rm -R -f $SYSMOUNT/system/app/mldapchecker
 rm -R -f $SYSMOUNT/system/app/SamsungPassAutofill_v1
 rm -R -f $SYSMOUNT/system/app/SamsungTTS
-rm -R -f $SYSMOUNT/system/app/SecurityLogAgent
+# rm -R -f $SYSMOUNT/system/app/SecurityLogAgent
 rm -R -f $SYSMOUNT/system/app/UniversalMDMClient
 rm -R -f $SYSMOUNT/system/app/HoneyBoard/oat
-rm -R -f $SYSMOUNT/system/priv-app/AuthFramework
+# rm -R -f $SYSMOUNT/system/priv-app/AuthFramework
 rm -R -f $SYSMOUNT/system/priv-app/CIDManager
-rm -f $SYSMOUNT/system/priv-app/ContainerAgent3/ContainerAgent3.apk
+# rm -f $SYSMOUNT/system/priv-app/ContainerAgent3/ContainerAgent3.apk
 rm -R -f $SYSMOUNT/system/priv-app/EnhancedAttestationAgent
 rm -R -f $SYSMOUNT/system/priv-app/FBInstaller_NS
 rm -R -f $SYSMOUNT/system/priv-app/FBServices
 rm -R -f $SYSMOUNT/system/priv-app/FotaAgent
 rm -R -f $SYSMOUNT/system/priv-app/KLMSAgent
-rm -R -f $SYSMOUNT/system/priv-app/knoxanalyticsagent
+# rm -R -f $SYSMOUNT/system/priv-app/knoxanalyticsagent
 # rm -R -f $SYSMOUNT/system/priv-app/KnoxCore
 # rm -R -f $SYSMOUNT/system/priv-app/knoxvpnproxyhandler
 rm -R -f $SYSMOUNT/system/priv-app/MateAgent
 rm -R -f $SYSMOUNT/system/priv-app/OneDrive_Samsung_v3
 rm -R -f $SYSMOUNT/system/priv-app/PaymentFramework
+# rm -R -f $SYSMOUNT/system/priv-app/Quickboard
 rm -R -f $SYSMOUNT/system/priv-app/SamsungBilling
 rm -R -f $SYSMOUNT/system/priv-app/SamsungPass
 rm -R -f $SYSMOUNT/system/priv-app/SamsungSocial
@@ -180,9 +181,12 @@ rm -R -f $SYSMOUNT/system/priv-app/Telecom/oat
 rm -R -f $SYSMOUNT/system/priv-app/TeleService/oat
 # rm -R -f $SYSMOUNT/system/container/SharedDeviceKeyguard
 rm -f $SYSMOUNT/system/etc/sysconfig/samsungpassapp.xml
-rm -f $SYSMOUNT/system/etc/sysconfig/samsungauthframework.xml
+# rm -f $SYSMOUNT/system/etc/sysconfig/samsungauthframework.xml
 rm -f $SYSMOUNT/system/recovery-from-boot.p
 rm -f $SYSMOUNT/system/tts/lang_SMT/smt_es_MX*.*
+rm -f $SYSMOUNT/system/tts/lang_SMT/smt_en_GB*.*
+rm -f $SYSMOUNT/system/tts/lang_SMT/smt_pt_BR*.*
+rm -f $SYSMOUNT/system/tts/lang_SMT/smt_ru_RU*.*
 rm -f $SYSMOUNT/system/framework/oat/arm64/services.art
 rm -f $SYSMOUNT/system/framework/oat/arm64/services.odex
 rm -f $SYSMOUNT/system/framework/oat/arm64/services.vdex
@@ -194,21 +198,19 @@ local md5
 local i
 
 rm -R -f product/app/Maps
+rm -R -f product/app/Messages
 rm -R -f product/app/YouTube
 #rm -R -f product/priv-app/Velvet
-rm -R -f prism/app/*companion-release
-rm -R -f prism/app/*eBay*
-rm -R -f prism/app/yandex*
-rm -R -f prism/app/idapk*
-rm -R -f prism/app/instagram_stub
-rm -R -f prism/app/MDIP*
-rm -R -f prism/app/MySingtel_v7.4
-rm -R -f prism/app/SwiftKey*
-rm -R -f prism/app/yandex.search
+rm -R -f prism/app/*
+rm -R -f prism/media/carriers/single/PRT/media/bootsamsung.qmg
+rm -R -f prism/media/carriers/single/PRT/media/video/shutdown/shutdown.qmg
 rm -R -f prism/preload/SER/hidden_app/yandex.search.apk
+rm -R -f prism/media/carriers/single/PRT/wallpaper/drawable/3D*
+rm -R -f prism/media/carriers/single/PRT/wallpaper/drawable/bable*
+rm -R -f prism/media/carriers/single/PRT/wallpaper/drawable/brokat*
+rm -R -f prism/media/carriers/single/PRT/wallpaper/drawable/geometria*
 find $PWD/prism/HWRDB/data -mindepth 1 -maxdepth 1 -type f -not -name "hwr_ar.dat" -not -name "hwr_de_DE.dat" -not -name "hwr_en_US.dat" -not -name "hwr_en_GB.dat" -not -name "hwr_es_ES.dat" -not -name "hwr_fr_FR.dat" -not -name "hwr_ro_RO.dat" -not -name "hwr_ru_RU.dat" -exec rm -rf '{}' \;
 rm -R -f prism/priv-app/*
-rm -R -f prism/app/SamsungTTS
 rm -R -f prism/sipdb/Xt9/*
 find $PWD/prism/sipdb/SwiftKey -mindepth 1 -maxdepth 1 -type d -not -name "ar" -not -name "de" -not -name "en_us" -not -name "en_gb" -not -name "es_es" -not -name "fr_fr" -not -name "ro" -not -name "ru" -exec rm -rf '{}' \;
 }
@@ -220,7 +222,7 @@ local i
 
 rm -R -f product/app/Multi_SKU*
 rm -R -f product/app/MySingtel*
-rm -R -f product/app/yandex.search
+rm -R -f product/app/yandex*
 rm -R -f product/preload/INS/hidden_app/app/*
 rm -R -f product/HWRDB/data/hwr_zh*
 rm -R -f product/priv-app/*
