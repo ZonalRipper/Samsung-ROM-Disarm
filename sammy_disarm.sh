@@ -29,6 +29,7 @@
 # v4.4 - added more debloat options							  #
 # v4.5 - Added FRP and Reactivation Disable for vendor        #
 # v4.6 - Added floating features for S10,N10 & S20            #
+# v4.7 - FixTypo and Latest Debloat                           #
 ###############################################################
 
 ###############################################################
@@ -70,12 +71,12 @@ rm -R -f $SYSMOUNT/system/app/Netflix_stub
 rm -R -f $SYSMOUNT/system/app/Notes40
 rm -R -f $SYSMOUNT/system/app/SamsungPassAutofill_v1
 rm -R -f $SYSMOUNT/system/app/SamsungTTS
-rm -R -f $SYSMOUNT/system/app/SecurityLogAgent
+# rm -R -f $SYSMOUNT/system/app/SecurityLogAgent
 rm -R -f $SYSMOUNT/system/app/SmartReminder
 rm -R -f $SYSMOUNT/system/app/UniversalMDMClient
 rm -R -f $SYSMOUNT/system/app/HoneyBoard/oat
 # rm -R -f $SYSMOUNT/system/priv-app/AirCommand
-rm -R -f $SYSMOUNT/system/priv-app/AuthFramework
+# rm -R -f $SYSMOUNT/system/priv-app/AuthFramework
 # rm -R -f $SYSMOUNT/system/priv-app/AREmojiEditor
 # rm -R -f $SYSMOUNT/system/priv-app/AREmoji
 # rm -R -f $SYSMOUNT/system/priv-app/AvatarEmojiSticker_Palette
@@ -93,7 +94,7 @@ rm -R -f $SYSMOUNT/system/priv-app/LiveStickers
 rm -R -f $SYSMOUNT/system/priv-app/MateAgent
 rm -R -f $SYSMOUNT/system/priv-app/OneDrive_Samsung_v3
 rm -R -f $SYSMOUNT/system/priv-app/PaymentFramework
-rm -R -f $SYSMOUNT/system/priv-app/Quickboard
+# rm -R -f $SYSMOUNT/system/priv-app/Quickboard ## media and devices buttons
 rm -R -f $SYSMOUNT/system/priv-app/SamsungBilling
 rm -R -f $SYSMOUNT/system/priv-app/SamsungPass
 rm -R -f $SYSMOUNT/system/priv-app/SamsungSocial
@@ -108,14 +109,14 @@ rm -R -f $SYSMOUNT/system/priv-app/SecSettings/oat
 rm -R -f $SYSMOUNT/system/priv-app/SecureFolder/oat
 rm -R -f $SYSMOUNT/system/priv-app/Telecom/oat
 rm -R -f $SYSMOUNT/system/priv-app/TeleService/oat
-rm -R -f $SYSMOUNT/system/priv-app/YourPhone_P1_5
+# rm -R -f $SYSMOUNT/system/priv-app/YourPhone_P1_5 ## Link to Windows
 rm -R -f $SYSMOUNT/system/preload/AirCommand
 rm -R -f $SYSMOUNT/system/preload/Facebook_stub_preload
 rm -R -f $SYSMOUNT/system/preload/SmartSwitch
 # rm -R -f $SYSMOUNT/system/container/SharedDeviceKeyguard
 rm -R -f $SYSMOUNT/system/hidden/SmartTutor
 rm -f $SYSMOUNT/system/etc/sysconfig/samsungpassapp.xml
-rm -f $SYSMOUNT/system/etc/sysconfig/samsungauthframework.xml
+# rm -f $SYSMOUNT/system/etc/sysconfig/samsungauthframework.xml
 rm -f $SYSMOUNT/system/recovery-from-boot.p
 rm -f $SYSMOUNT/system/tts/lang_SMT/smt_es_MX*.*
 rm -f $SYSMOUNT/system/tts/lang_SMT/smt_en_GB*.*
@@ -508,7 +509,7 @@ modoptics
 S10() {
 modsystem
 modprismproduct
-smodvendor
+modvendor
 }
 
 N10() {
