@@ -30,6 +30,7 @@
 # v4.5 - Added FRP and Reactivation Disable for vendor        #
 # v4.6 - Added floating features for S10,N10 & S20            #
 # v4.7 - FixTypo and Latest Debloat                           #
+# v4.8 - disable liboemcrypto.so for netflix fix              #
 ###############################################################
 
 ###############################################################
@@ -473,6 +474,16 @@ elif [ $device = "S21" ]; then
     printf -- '\033[31m     ..Mod not needed on S21 \033[0m\n';
 else    
     printf -- '\033[31m     ..floating features not added \033[0m\n';
+fi
+
+#DISABLE LIBOEMCRYPTO.SO
+LIBOEM=/vendor/lib/liboemcrypto.so
+printf -- 'modding '$LIBOEM' \n'
+if [ -f "$PWD/$LIBOEM" ]; then
+    mv $PWD/$LIBOEM $PWD/$LIBOEM.bak
+    printf -- '\033[32m     ..liboemcrypto modded \033[0m\n';
+else
+    printf -- '\033[31m     ..'$LIBOEM' not found \033[0m\n';
 fi
 }
 
