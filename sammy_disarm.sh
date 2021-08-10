@@ -378,12 +378,14 @@ fi
 #VENDOR MODS
 modvendor()
 {
-#DISABLE FRP
+#DISABLE FRP & INCREASE FRAME BUFFER
 VENDORBUILDPROP=/vendor/build.prop
 printf -- 'modding '$VENDORBUILDPROP' \n';
 if [ -f "$PWD/$VENDORBUILDPROP" ]; then
     setProperty "ro.frp.pst" "" "$PWD/$VENDORBUILDPROP"
     printf -- '\033[32m     ..frp disabled \033[0m\n';
+    setProperty "ro.surface_flinger.max_frame_buffer_acquired_buffers" "4" "$PWD/$VENDORBUILDPROP"
+    printf -- '\033[32m     ..frame buffer increased \033[0m\n';
 else
     printf -- '\033[31m     ..'$VENDORBUILDPROP' not found \033[0m\n';
 fi
